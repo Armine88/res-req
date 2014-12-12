@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Request and Response</title>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+</head>
+<body>
+<form>
+	<input type="text" placeholder="Enter Your username" id="user">
+	<input type="password" placeholder="Enter Your password" id="pass">
+	<button id="logIn">Log In</button>
+	<div id="div1">Result</div>
+</form>
+	<script>
+		$(document).ready(function(){
+			$("#logIn").click(function(){
+				var userVal=$("#user").val();
+				var passVal=$("#pass").val();
+				var datas={username:userVal, password:passVal};
+				$.ajax({
+					type:"POST",
+					url:"http://127.00.00:8080/",
+					data:JSON.stringify(datas),
+					cach:false,
+					contentType: "application/json",
+					dataType:'json',
+					success:function(datas){
+						alert('success');
+            			alert(JSON.stringify(datas));   
+					},
+					error: function(error) {
+  						alert("some error in fetching the notification");
+					}
+				});
+				console.log(userVal);
+				console.log(passVal);
+			});
+		});
+	</script>
+
+</body>
+</html>
